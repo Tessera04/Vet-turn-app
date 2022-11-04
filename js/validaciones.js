@@ -30,11 +30,27 @@ const mensajesError = {
     },
     password:{
         valueMissing: "El campo Contrasenia no puede quedar vacio",
-        paternMismatch: "Minimo seis caracteres, maximo 12, al menos una mayuscula, una minuscula y un numero: "
+        patternMismatch: "Minimo seis caracteres, maximo 12, al menos una mayuscula, una minuscula y un numero: "
     },
     nacimiento: {
         valueMissing: "El campo Fecha de Nacimiento no puede quedar vacio",
         customError: "Debes tener al menos 18 anos de edad"
+    },
+    numero: {
+        valueMissing: "El campo Numero Telefonico no puede estar vacio",
+        patternMismatch: "El formato requerido es 11XXXXXXXX (10 Numeros)."
+    },
+    direccion: {
+        valueMissing: "El campo Direccion no puede estar vacio",
+        patternMismatch: "La direccion debe contener entre 10 a 40 caracteres." 
+    },
+    ciudad: {
+        valueMissing: "El campo Ciudad no puede estar vacio",
+        patternMismatch: "La ciudad debe contener entre 4 a 30 caracteres."
+    },
+    estado:{
+        valueMissing: "El campo Estado no puede estar vacio",
+        patternMismatch: "El Estado debe contener entre 4 a 30 caracteres."
     },
 };
 
