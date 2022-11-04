@@ -1,37 +1,59 @@
 export function valida(input){
     const tipoDeInput = input.dataset.tipo;
     if(validadores[tipoDeInput]){
-        validadores[tipoDeInput](input)
+        validadores[tipoDeInput](input);
     }
 
     if(input.validity.valid){
         input.parentElement.classList.remove("input-container--invalid");
+        input.parentElement.querySelector(".input-message-error").innerHTML = "";
     }else{
         input.parentElement.classList.add("input-container--invalid");
+        input.parentElement.querySelector(".input-message-error").innerHTML = mostrarMensajesError(tipoDeInput, input);
     }
 }
 
+const tipoDeErrores = [
+    "valueMissing",
+    "typeMismatch",
+    "patternMismatch",
+    "customError",
+];    
+
 const mensajesError = {
     nombre:{
-        valueMissing: "Este campo no puede estar vacio",
+        valueMissing: "El campo Nombre no puede quedar vacio",
     },
     email:{
-        valueMissing: "Este campo no puede estar vacio",
+        valueMissing: "El campo Email no puede quedar vacio",
         typeMismatch: "El correo no es valido"
     },
     password:{
-        valueMissing: "Este campo no puede estar vacio",
+        valueMissing: "El campo Contrasenia no puede quedar vacio",
         paternMismatch: "Minimo seis caracteres, maximo 12, al menos una mayuscula, una minuscula y un numero: "
     },
     nacimiento: {
-        valueMissing: "Este campo no puede estar vacio",
+        valueMissing: "El campo Fecha de Nacimiento no puede quedar vacio",
         customError: "Debes tener al menos 18 anos de edad"
-    }
-}
+    },
+};
 
 const validadores = {
     nacimiento: input => validarNacimiento(input),
 
+};
+
+function mostrarMensajesError(tipoDeInput, input){
+    let mensaje = "";
+    tipoDeErrores.forEach((error) => {
+        if(input.validity[error]){
+            console.log(tipoDeInput, error);
+            console.log(input.validity[error]);
+            console.log(mensajesError[tipoDeInput][error]);
+            mensaje = mensajesError[tipoDeInput][error];
+        }
+    });
+    return mensaje;
 };
 
 /*const inputNacimiento = document.querySelector("#birth");
